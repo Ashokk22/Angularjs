@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<!--[if lte IE 9]> <html class="lte-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en" data-ng-app="seedApp">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
+    <title>Seed Request Application</title>
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css" media="all">
+
+    <link rel="stylesheet" href="bower_components/metrics-graphics/dist/metricsgraphics.css">
+
+    <link rel="stylesheet" href="bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
+
+    <link rel="stylesheet" href="assets/icons/flags/flags.min.css" media="all">
+
+    <link rel="stylesheet" href="assets/css/main.min.css" media="all">
+
+    <link href="assets/css/app.css" rel="stylesheet" media="all" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/toaster.min.css" rel="stylesheet" />
+</head>
+<body class="sidebar_main_open" ng-controller="homeController" ng-keypress="triggerUSBScanner($event)">
+    <header id="header_main">
+        <div class="header_main_content">
+            <nav class="uk-navbar">
+
+                <a href="#" id="sidebar_main_toggle" class="sSwitch sSwitch_left">
+                    <span class="sSwitchIcon"></span>
+                </a>
+
+                <a href="#" id="sidebar_secondary_toggle" class="sSwitch sSwitch_right sidebar_secondary_check">
+                    <span class="sSwitchIcon"></span>
+                </a>
+                <div class="uk-navbar-flip">
+                    <ul class="uk-navbar-nav user_actions">
+
+                        <li>
+                            <!-- User profile image -->
+                            <div>
+                                <span>
+                                    <img class="md-user-image" ng-src="{{profilePictureUrl}}" style="width:40px;height:40px;" />
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- User Name -->
+                            <div class="pull-right">
+                                <span class="hidden-xs">
+                                    <span data-translate="USERNAME" class="" ng-model="userName">
+                                        <b>Welcome <br />{{givenName}} {{surName}}</b>
+                                    </span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <aside id="sidebar_main">
+        <a href="#" class="uk-close sidebar_main_close_button"></a>
+        <div class="sidebar_main_header">
+            <!--<div class="sidebar_logo" style="background-image: url('Content/Images/loginlogohome.png');background-size:contain; background-repeat: no-repeat;">
+            </div>-->
+            <div class="sidebar_logo" style="background-image: url('Content/Images/sExchange.png'); background-size: contain; background-repeat: no-repeat;">
+            </div>
+            </div>
+        <div class="menu_section">
+            <ul>
+                <!--class="act_section"-->
+                <li>
+                    <a ui-sref="seedRequest">
+                        <span class="menu_icon glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="settings">
+                        <span class="menu_icon glyphicon glyphicon-cog"></span>
+                        Settings
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="seedRequest">
+                        <span class="menu_icon glyphicon glyphicon-asterisk"></span>
+                        Pull List
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="seedProcessing">
+                        <span class="menu_icon glyphicon glyphicon-envelope"></span>
+                        Seed Processing
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="seedShipping">
+                        <span class="menu_icon fa fa-truck"></span>
+                       Shipping
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="seedPublish">
+                        <span class="menu_icon glyphicon glyphicon-list-alt"></span>
+                        Published
+                    </a>
+                </li>
+                <li ng-controller="FeedbackModalCtrl">
+                    <a ng-click="ShowFeedBack()">
+                        <span class=" menu_icon glyphicon glyphicon-comment">
+                        </span>
+                        Feedback
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" ng-click="logout()">
+                        <span class="menu_icon glyphicon glyphicon-off"></span>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <br />
+        <div class="text-center">
+            <strong> Version 1.0</strong>
+        </div>
+    </aside>
+
+    <div id="page_content">
+        <div id="page_content_inner" ui-view>
+          
+        </div>
+        <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+    </div>
+
+
+    <script>
+        WebFontConfig = {
+            google: {
+                families: [
+                    'Source+Code+Pro:400,700:latin',
+                    'Roboto:400,300,500,700,400italic:latin'
+                ]
+            }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="env.js"></script>
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="Scripts/toaster.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+
+    <script src="Scripts/ng-cordova.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="Scripts/cordova.js"></script>
+    
+    <script src="assets/js/common.min.js"></script>
+    
+    <script src="assets/js/altair_admin_common.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.js"></script>
+
+    
+
+    <script src="angular/Directory/angular.treeview.js"></script>
+    <script src="Scripts/angular-filter.min.js"></script>
+    <script src="Scripts/ngStorage.min.js"></script>
+    <script src="Scripts/smart-table.min.js"></script>
+    <script src="Scripts/angular-bootstrap-checkbox.js"></script>
+
+    <script src="angular/app.js"></script>
+    <script src="angular/config.js"></script>
+
+    <script src="angular/Service/authServiceProvider.js"></script>
+    <script src="angular/Service/seedRequestServiceProvider.js"></script>
+    <script src="angular/Controllers/seedRequestController.js"></script>
+    <script src="angular/Service/feedbackService.js"></script>
+    <script src="angular/Controllers/alternateSourceController.js"></script>
+    <script src="angular/Controllers/homeController.js"></script>
+    <script src="angular/Controllers/feedbackController.js"></script>
+    <script src="angular/Controllers/notificationController.js"></script>
+    <script src="angular/Controllers/seedNotFoundController.js"></script>
+    <script src="angular/Controllers/seedNotShelledController.js"></script>
+    <script src="angular/Controllers/seedProcessingController.js"></script>
+    <script src="angular/Controllers/seedRequestFilterController.js"></script>
+    <script src="angular/Controllers/settingsController.js"></script>
+    <!--<script src="angular/Controllers/headerController.js"></script>-->
+    <script src="angular/Controllers/seedPublishController.js"></script>
+    <script src="angular/Controllers/seedShippingController.js"></script>
+
+    <link href="Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="Scripts/jquery.datetimepicker.js"></script>
+
+    <script src="Scripts/feedback/app.v1.js"></script>
+    <script src="Scripts/feedback/appMain.js"></script>
+    <script src="Scripts/feedback/appServer.js"></script>
+
+    <script>
+
+        // close sidebar on menu click in mobile mode
+        $(".menu_section ul li a").on("click", function () {
+            if ($('.sidebar_main_close_button').css('display') != 'none')  // if mobile mode then close the sidebar on menu click
+                $('.sidebar_main_close_button').click();
+        });
+
+    </script>
+
+</body>
+
+</html>

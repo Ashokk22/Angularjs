@@ -1,0 +1,142 @@
+﻿
+
+<div class="panel panel-default stick">
+
+    <div ng-class="{'panel-heading text-center':scannerStatus==0,'cameraMatch panel-heading text-center':scannerStatus==1,'cameraNotMatch panel-heading text-center':scannerStatus==2}">
+        <a href=" javascript:;" class="pull-left" ng-click="GoBackEvent()">
+            <span aria-hidden="true">&larr;</span> Back
+        </a>
+        <strong> Pull List</strong>
+        <button class="hide-on-desktop pull-right" ng-click="scanBarcode();">
+
+            <i class="glyphicon glyphicon-camera"></i>
+        </button>
+    </div>
+</div>
+
+<!--<div>
+    <h3>Start Scanning</h3>
+</div>-->
+
+
+
+<ul style="list-style-type: none;">
+    <li>&nbsp;</li>
+</ul>
+
+<ul class="breadcrumb">
+    <li>GroupBy:{{GroupByOption}}</li>
+</ul>
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li>Sort Order:{{sort1}}</li>
+    <li>{{sort2}}</li>
+    <li>{{sort3}}</li>
+</ul>
+<!-- END BREADCRUMB -->
+<!--<div>
+    <div id="container">
+        <div id="content" style="width:auto;height:300px;border:double">
+        </div>
+    </div>
+   <button id="Source" ng-click="click()" class="btn btn-primary"> Scan</button>
+</div>-->
+<!--<div class="form-group">
+
+    <button class="form-control hide-on-desktop" ng-click="scanBarcode();">
+
+        <i class="glyphicon glyphicon-camera"></i>
+    </button>
+</div>-->
+<!--<div>
+            {{searchInventoryData}}
+</div>-->
+<!--<div>
+    <div class="panel panel-default">
+        <div class="panel-body" ng-repeat="seedData in searchInventoryData">
+            <!--<h3>Styled Checkbox And Radio</h3>-->
+<!--<div class="form-group">
+    <div class="col-md-4">
+        <div class="checkbox">
+            <input id="checkbox1" class="styled" type="checkbox">
+                <label for="checkbox1" ng-model="seedData.ISSELECTED">
+                    <b>{{seedData.PRIMARYDISPLAY}}</b>
+                </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-4">
+        <p>{{seedData.DISPLAYOPTIONAL1}}</p>
+    </div>
+    <div class="col-md-4">
+        <p>{{seedData.DISPLAYOPTIONAL2}}</p>
+    </div>-->
+<!--<div class="col-md-4">
+    <label class="check"><input type="radio" class="iradio" name="iradio" disabled /> Disabled</label>
+</div>-->
+<!--</div>
+        </div>
+    </div>
+</div>-->
+<style>
+    .warning {
+        color: red;
+        background-color: lightyellow;
+    }
+
+    .seedNotShelledStatus {
+        color: red;
+        background-color: yellow;
+    }
+</style>
+
+<div class="form-group">
+    <ul class="col-xs-12 list-group">
+        <!--<li class="list-group-item">
+            <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+            Select All
+        </li>-->
+
+
+        <li class="list-group-item" ng-repeat="seedData in searchInventoryData | groupBy:GroupByOption | toArray:true | orderBy:'$key'">
+            <div class="colored" style="color:red;background-color:Highlight">
+                {{ seedData.$key }}
+            </div>
+            <div>
+
+                <div ng-repeat="sData in seedData | orderBy:GroupByOption" ng-class="{'warning':sData.ISSELECTED==true,'seedNotShelledStatus':sData.STATUS==1490}" style="border:outset;">
+                    <!--{{ tag.name }}-->
+                    <!--<input type="checkbox" ng-model="sData.ISSELECTED">-->
+
+                    <checkbox id="checkbox0" ng-model="sData.ISSELECTED"></checkbox>
+                    <b>
+                        {{sort1}} : {{sData.PRIMARYDISPLAY}}
+                    </b>
+                    <b class="pull-right">
+                        Quantity:{{sData.REQUIREDQUANTITY}}
+                    </b>
+
+                    <p> {{Display1}} : {{sData.DISPLAYOPTIONAL1}}</p><p> {{Display2}} : {{sData.DISPLAYOPTIONAL2}}</p>
+                    
+                </div>
+            </div>
+            <!--<label for="{{prCode}}">{{prCode.programeCode}}</label>-->
+        </li>
+
+    </ul>
+</div>
+
+
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="refreshRequest()">Refresh</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-disabled="true" ng-click="FindAlternateSource()">Find Alternate Source</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="DoneScanning()">Work With Seed Not Found</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="MoveToSeedProcessing()">Move To Seed Processing</button>
+</div>

@@ -1,0 +1,39 @@
+﻿<style>
+    .modal-content{
+        top: 200px;
+    }
+</style>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title">Give Feedback</h4>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <label for="UsernameTextbox">Name</label>
+        <input type="text" class="form-control" id="UsernameTextbox" ng-model="feedbackData.LoggedInName" disabled>
+    </div>
+    <div style="display: none">
+        <div class="form-group">
+            <label for="EmailIDTextbox">Email</label>
+            <input type="email" class="form-control" id="EmailIDTextbox" ng-model="feedbackData.Email" disabled>
+        </div>
+    </div>
+    <div class="btn-group btn-group-justified" role="group" id='Feedback-btn-group' data-value='suggestion'>
+        <a class="btn btn-success" data-value="suggestion" ng-click="SetFeedBackType('Question')" ng-class="isActive('Question') ? 'active btn-success' : 'btn-default'">Question</a>
+        <a class="btn btn-default" data-value="Issue" ng-click="SetFeedBackType('Problem')" ng-class="isActive('Problem') ? 'active btn-success' : 'btn-default'">Problem</a>
+        <a class="btn btn-default" data-value="Idea" ng-click="SetFeedBackType('Idea')" ng-class="isActive('Idea') ? 'active btn-success' : 'btn-default'">Idea</a>
+    </div>
+    <div class="form-group m-t vert-offset-top-2">
+        <label for="CommentTextbox">Comments</label>
+        <textarea class="form-control" autofocus id="CommentTextbox" ng-model="feedbackData.Comment" style="resize: none;"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <a id="ClearButton" class="btn btn-default">
+        Clear
+    </a>
+    <a id="SubmitButton" class="btn btn-primary" data-dismiss="modal" ng-click="ok()">
+        Submit
+    </a>
+</div>

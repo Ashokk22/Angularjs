@@ -1,0 +1,98 @@
+﻿
+<!--<div class="panel panel-default stick">
+
+    <div ng-class="{'panel-heading text-center':scannerStatus==0,'cameraMatch panel-heading text-center':scannerStatus==1,'cameraNotMatch panel-heading text-center':scannerStatus==2}">
+        <a href=" javascript:;" class="pull-left" ng-click="GoBackEvent()">
+            <span aria-hidden="true">&larr;</span> Back
+        </a>
+        <strong> Seed Processing</strong>
+        <button class="hide-on-desktop pull-right" ng-click="scanBarcode();">
+
+            <i class="glyphicon glyphicon-camera"></i>
+        </button>
+    </div>
+</div>-->
+
+<div class="panel panel-default stick">
+
+    <div ng-class="{'panel-heading text-center':scannerStatus==0,'cameraMatch panel-heading text-center':scannerStatus==1,'cameraNotMatch panel-heading text-center':scannerStatus==2}">
+        <a href=" javascript:;" class="pull-left" ng-click="GoBackEvent()">
+            <span aria-hidden="true">&larr;</span> Back
+        </a>
+        <strong> Seed Processing</strong>
+        <button class="hide-on-desktop pull-right" ng-click="scanBarcode();">
+
+            <i class="glyphicon glyphicon-camera"></i>
+        </button>
+    </div>
+</div>
+
+<ul style="list-style-type: none;">
+    <li>&nbsp;</li>
+</ul>
+
+<ul class="breadcrumb">
+    <li>GroupBy:{{GroupByOption}}</li>
+</ul>
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li>Sort Order:{{sort1}}</li>
+    <li>{{sort2}}</li>
+    <li>{{sort3}}</li>
+</ul>
+
+<!--<div class="form-group">
+
+    <button class="form-control hide-on-desktop" ng-click="scanBarcode();">
+        <i class="glyphicon glyphicon-camera"></i>
+    </button>
+</div>-->
+
+<style>
+    .warning {
+        color: red;
+        background-color: lightyellow;
+    }
+
+    /*.seedNotShelledStatus {
+        color: white;
+        background-color: lightgreen;
+    }*/
+</style>
+<div class="form-group">
+    <ul class="col-xs-12 list-group">
+        <li class="list-group-item" ng-repeat="seedData in seedProcessingData | groupBy:GroupByOption | toArray:true | orderBy:'$key'">
+            <div class="colored" style="color:red;background-color:Highlight">
+                {{ seedData.$key}}
+            </div>
+            <div>
+                <div ng-repeat="sData in seedData | orderBy:GroupByOption" ng-class="{'warning':sData.ISSELECTED==true}" style="border:outset;">
+                    <!--{{ tag.name }}-->
+                    <checkbox id="checkbox0" ng-model="sData.ISSELECTED"></checkbox>
+                    <b>
+                        {{sort1}} : {{sData.PRIMARYDISPLAY}}
+                    </b>
+
+                    <b class="pull-right">
+                        Quantity:{{sData.REQUIREDQUANTITY}}
+                    </b>
+
+                    <p> {{Display1}} : {{sData.DISPLAYOPTIONAL1}}</p><p> {{Display2}} : {{sData.DISPLAYOPTIONAL2}}</p>
+                </div>
+            </div>
+            <!--<label for="{{prCode}}">{{prCode.programeCode}}</label>-->
+        </li>
+
+    </ul>
+</div>
+
+
+<!--<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="PublishAndPrint()">Publish & Print</button>
+</div>-->
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-disabled="true" ng-click="NotEnoughSeed()">Not Enough Seed</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="continue()">Continue to Shipping</button>
+</div>

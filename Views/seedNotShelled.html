@@ -1,0 +1,56 @@
+﻿
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong> Seed Not Shelled</strong>
+    </div>
+</div>
+
+<div class="form-group">
+    <ul class="col-xs-12 list-group">
+        <li class=" list-group-item " ng-repeat="seedData in SeedNotShelledData | groupBy:'SRC_SET' | toArray:true | orderBy:'$key'">
+            <i ng-class='setClass(seedData)' ng-click="setExpand(seedData)"></i>
+
+            <!--<input type="checkbox" value="{{seedData.$key}}" ng-click="checkUncheckAll(seedData)" />-->
+            <checkbox id="checkbox0" ng-model="seedData[0].PARENT_SELECTOR" ng-change="checkUncheckAll(seedData)"></checkbox>
+
+            <span>
+                {{ seedData.$key }}
+            </span>
+
+            <div style="margin-left:40px;">
+                <div ng-repeat="sData in seedData | orderBy:'SRC_SET'" ng-show="sData.COLLAPSED">
+                    <!--{{ tag.name }}-->
+                    <checkbox id="checkbox1" ng-model="sData.ISSELECTED" ng-change="checkUncheckChild(seedData)"></checkbox>
+                    <b>{{sData.PEDIGREE}}</b>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="form-group">
+    <label>Date To Be Shipped By</label>
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon glyphicon-calendar" id="basic-addon1">&nbsp;</span>
+        <input id="datetimepicker" type="text" class="form-control" placeholder="Date Time" ng-model="scheduleDateTime" aria-describedby="basic-addon1">
+    </div>
+    <h3>{{scheduleDateTime}}</h3>
+    <!--<input class="form-control" id="datetimepicker" type="text" ng-model="scheduleDateTime">-->
+</div>
+
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="sendEmailToRequestor()">Send Email to Requestor</button>
+</div>
+<!--<div class="form-group">
+    <button class="btn btn-danger form-control">Continue</button>
+</div>-->
+<script type="text/javascript">
+    $.noConflict();
+    $('#datetimepicker').datetimepicker({
+        minDate: 0,
+        timepicker: false,
+        format: 'd-M-y'
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿<div class="panel panel-default stick">
+
+    <div ng-class="{'panel-heading text-center':scannerStatus==0,'cameraMatch panel-heading text-center':scannerStatus==1,'cameraNotMatch panel-heading text-center':scannerStatus==2}">
+        <a href=" javascript:;" class="pull-left" ng-click="GoBackEvent()">
+            <span aria-hidden="true">&larr;</span> Back
+        </a>
+        <strong> Alternate Sources</strong>
+        <button class="hide-on-desktop pull-right" ng-click="scanBarcode();">
+
+            <i class="glyphicon glyphicon-camera"></i>
+        </button>
+    </div>
+</div>
+<!--<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong> Alternate Sources</strong>
+    </div>
+</div>-->
+
+<ul style="list-style-type: none;">
+    <li>&nbsp;</li>
+</ul>
+
+<div class="form-group">
+
+    <!--<button class="form-control" ng-click="scanBarcode();">
+        <i class="glyphicon glyphicon-camera"></i>
+    </button>-->
+    <!--<pre>{{alternateSourceData || json}}</pre>-->
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="colored" style="color:red;background-color:Highlight">
+                {{ alternateSourceData.InvBid }}
+            </div>
+            <div>
+
+                <div ng-class="{'warning':alternateSourceData.ISSELECTED==true}" style="border:outset;">
+                    <!--{{ tag.name }}-->
+                    <!--<input type="checkbox" ng-model="sData.ISSELECTED">-->
+                    <checkbox id="checkbox0" ng-model="sData.ISSELECTED"></checkbox>
+                    <b>
+                        Source Set : <strong>{{alternateSourceData.SrcSet}}</strong>
+                    </b>
+
+                    <p> Source Plot : <strong>{{alternateSourceData.SrcPlotNum}}</strong></p>
+
+                    <p> Source : <strong>{{alternateSourceData.Source}}</strong></p>
+                </div>
+            </div>
+            <!--<label for="{{prCode}}">{{prCode.programeCode}}</label>-->
+        </li>
+</ul>
+</div>
+
+
+<!--<div class="form-group">
+    <button class="btn btn-danger form-control">Show Source From Other Site</button>
+</div>
+<div class="form-group">
+    <button class="btn btn-danger form-control">Scan Desired Source</button>
+</div>-->
+
+<!--<div class="form-group">
+    <button class="btn btn-primary form-control">No Alternatives - Send Email</button>
+</div>-->

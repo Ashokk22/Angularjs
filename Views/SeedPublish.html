@@ -1,0 +1,61 @@
+﻿<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong>Publishing</strong>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>From Date</label>
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon glyphicon-calendar" id="basic-addon1">&nbsp;</span>
+        <input id="dpFromdate" type="text" class="form-control date" placeholder="Date Time" ng-model="scheduleDateTime" aria-describedby="basic-addon1">
+    </div>
+    <label>To Date</label>
+    <div class="input-group">
+    <span class="input-group-addon glyphicon glyphicon glyphicon-calendar" id="basic-addon1">&nbsp;</span>
+        <input id="dpTodate" type="text" class="form-control date" placeholder="Date Time" ng-model="scheduleDateTime" aria-describedby="basic-addon1">
+    </div>
+    <!--<input class="form-control" id="datetimepicker" type="text" ng-model="scheduleDateTime">-->
+
+</div>
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="searchPublishedData()">Search</button>
+</div>
+
+<table st-table="rowCollection" class="table table-striped">
+    <thead>
+        <tr>
+            <th >S.No</th>
+            <th st-sort="SHIPPINGPROGRAM">Recieving Program</th>
+            <th st-sort="PUBLISHEDDATE">Mat Exchange publish date</th>
+            <th st-sort="SEEDQUANTIY">Seed Quantity</th>
+            <th st-sort="UOM">Seed UOM</th>
+            <th st-sort="SRCPLOTNUM">SRC Plot</th>
+            <th st-sort="SRCSET">SRC Set</th>
+            <th st-sort="METHODOLOGY">Methodology</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="seedData in seedPublishData">
+            <td><input type="checkbox" ng-model="row.ISSELECTED" /></td>
+            <td>{{seedData.SHIPPINGPROGRAM}}</td> 
+            <td>{{seedData.PUBLISHEDDATE}}</td>
+            <td>{{seedData.SEEDQUANTIY}}</td>
+            <td>{{seedData.UOM}}</td>
+            <td>{{seedData.SRCPLOTNUM}}</td>
+            <td>{{seedData.SRCSET}}</td>
+            <td>{{seedData.METHODOLOGY}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $.noConflict();
+    $('.date').datetimepicker({
+        //minDate: 0,
+        timepicker: false,
+        format: 'd-M-y'
+    });
+</script>

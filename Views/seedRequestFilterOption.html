@@ -1,0 +1,269 @@
+﻿<div class="panel panel-default">
+    <!-- Default panel contents -->
+
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong> Seed Settings</strong>
+    </div>
+</div>
+<!-- Heading -->
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-right"></span> Sorts</h2>
+</div>
+
+
+<div class="form-group">
+    <label>Group By</label>
+    <select class="form-control" ng-model="GroupByOption">
+        <option value="0" disabled>Group Choices</option>
+        <option value="DATE_NEEDED">Date Due</option>
+        <option value="PEDIGREE">Pedigree</option>
+        <option value="REQUESTOR_PROG">Requestor</option>
+        <option value="SRC_PLOT_NUM">SRC Plot#</option>
+        <option value="SRC_SET" ng-selected="{{GroupByOption}}">SRC Set </option>
+        <option value=""></option>
+        <option value="ASORT1">ASRT1</option> 
+        <option value="ASORT2">ASRT2</option>
+        <option value="ASORT3">ASRT3</option>
+        <option value="ASORT4">ASRT4</option>
+        <option value="ASORT5">ASRT5</option>
+        <option value="OWNER">Owner</option>
+        <option value="METHODOLOGY">Material Type </option>
+        <option value="ORIGIN">Origin</option>
+        <!--<option value="ProductName"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD">Quality</option>
+        <option value="SRC_ORIG_COUNTRY">Region</option>
+        <option value="Request_ID<">Request ID</option>
+        <option value="REQ_QTY">Seed Quantity</option>
+        <option value="SOURCE">Source</option>
+        <option value="SRC_Season">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML">SU Location</option>
+        <option value="UOM">Seed Quantity_UOM</option>
+        </select>
+</div>
+
+<div class="form-group">
+    <label>Primary Sort</label>
+    <select class="form-control" ng-model="FirstSortOption" ng-change="secondaryDisabled[FirstSortOption]=true;tertiaryDisabled[FirstSortOption]=true">
+        <option value="0" disabled>Sort Choices</option>
+        <option value="DATE_NEEDED" ng-disabled="primaryDisabled['DATE_NEEDED']">Date Due</option>
+        <option value="PEDIGREE" ng-disabled="primaryDisabled['PEDIGREE']">Pedigree</option>
+        <option value="REQUESTOR_PROG" ng-disabled="primaryDisabled['REQUESTOR_PROG']">Requestor</option>
+        <option value="SRC_PLOT_NUM" ng-disabled="primaryDisabled['SRC_PLOT_NUM']">SRC Plot#</option>
+        <option value="SRC_SET" ng-disabled="primaryDisabled['SRC_SET']">SRC Set</option>
+        <option value=""></option>
+        <option value="ASORT1" ng-disabled="primaryDisabled['ASORT1']">ASRT1</option>
+        <option value="ASORT2" ng-disabled="primaryDisabled['ASORT2']">ASRT2</option>
+        <option value="ASORT3" ng-disabled="primaryDisabled['ASORT3']">ASRT3</option>
+        <option value="ASORT4" ng-disabled="primaryDisabled['ASORT4']">ASRT4</option>
+        <option value="ASORT5" ng-disabled="primaryDisabled['ASORT5']">ASRT5</option>
+        <option value="OWNER" ng-disabled="primaryDisabled['OWNER']">Owner</option>
+        <option value="METHODOLOGY" ng-disabled="primaryDisabled['Material Type']">Material Type </option>
+        <option value="ORIGIN" ng-disabled="primaryDisabled['ORIGIN']">Origin</option>
+        <!--<option value="Product Name" ng-disabled="primaryDisabled['Product Name']"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD" ng-disabled="primaryDisabled['INBRED_LINE_RATING_CD']">Quality</option>
+        <option value="SRC_ORIG_COUNTRY" ng-disabled="primaryDisabled['SRC_ORIG_COUNTRY']">Region</option>
+        <option value="Request_ID" ng-disabled="primaryDisabled['Request_ID']">Request ID</option>
+        <option value="REQ_QTY" ng-disabled="primaryDisabled['REQ_QTY']">Seed Quantity</option>
+        <option value="SOURCE" ng-disabled="primaryDisabled['SOURCE']">Source</option>
+        <option value="SRC_Season" ng-disabled="primaryDisabled['SRC_Season']">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE" ng-disabled="primaryDisabled['STORAGE_UNIT_BARCODE']">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML" ng-disabled="primaryDisabled['STORAGE_UNIT_DISPLAY_DNML']">SU Location</option>
+        <option value="UOM" ng-disabled="primaryDisabled['UOM']">Seed Quantity_UOM</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Secondary Sort</label>
+    <select class="form-control" ng-model="SecondSortOption" ng-change="primaryDisabled[SecondSortOption]=true;tertiaryDisabled[SecondSortOption]=true">
+        <option value="0" disabled>Sort Choices</option>
+        <option value="DATE_NEEDED" ng-disabled="secondaryDisabled['DATE_NEEDED']">Date Due</option>
+        <option value="PEDIGREE" ng-disabled="secondaryDisabled['PEDIGREE']">Pedigree</option>
+        <option value="REQUESTOR_PROG" ng-disabled="secondaryDisabled['REQUESTOR_PROG']">Requestor</option>
+        <option value="SRC_PLOT_NUM" ng-disabled="secondaryDisabled['SRC_PLOT_NUM']">SRC Plot#</option>
+        <option value="SRC_SET" ng-disabled="secondaryDisabled['SRC_SET']">SRC Set</option>
+        <option value=""></option>
+        <option value="ASORT1" ng-disabled="secondaryDisabled['ASORT1']">ASRT1</option>
+        <option value="ASORT2" ng-disabled="secondaryDisabled['ASORT2']">ASRT2</option>
+        <option value="ASORT3" ng-disabled="secondaryDisabled['ASORT3']">ASRT3</option>
+        <option value="ASORT4" ng-disabled="secondaryDisabled['ASORT4']">ASRT4</option>
+        <option value="ASORT5" ng-disabled="secondaryDisabled['ASORT5']">ASRT5</option>
+        <option value="OWNER" ng-disabled="secondaryDisabled['OWNER']">Owner</option>
+        <option value="METHODOLOGY" ng-disabled="secondaryDisabled['Material Type']">Material Type </option>
+        <option value="ORIGIN" ng-disabled="secondaryDisabled['ORIGIN']">Origin</option>
+        <!--<option value="Product Name" ng-disabled="secondaryDisabled['Product Name']"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD" ng-disabled="secondaryDisabled['INBRED_LINE_RATING_CD']">Quality</option>
+        <option value="SRC_ORIG_COUNTRY" ng-disabled="secondaryDisabled['SRC_ORIG_COUNTRY']">Region</option>
+        <option value="Request_ID" ng-disabled="secondaryDisabled['Request_ID']">Request ID</option>
+        <option value="REQ_QTY" ng-disabled="secondaryDisabled['REQ_QTY']">Seed Quantity</option>
+        <option value="SOURCE" ng-disabled="secondaryDisabled['SOURCE']">Source</option>
+        <option value="SRC_Season" ng-disabled="secondaryDisabled['SRC_Season']">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE" ng-disabled="secondaryDisabled['STORAGE_UNIT_BARCODE']">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML" ng-disabled="secondaryDisabled['STORAGE_UNIT_DISPLAY_DNML']">SU Location</option>
+        <option value="UOM" ng-disabled="secondaryDisabled['UOM']">Seed Quantity_UOM</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Tertiary Sort</label>
+    <select class="form-control" ng-model="ThirdSortOption" ng-change="primaryDisabled[ThirdSortOption]=true;secondaryDisabled[ThirdSortOption]=true">
+        <option value="0" disabled>Sort Choices</option>
+        <option value="DATE_NEEDED" ng-disabled="tertiaryDisabled['DATE_NEEDED']">Date Due</option>
+        <option value="PEDIGREE" ng-disabled="tertiaryDisabled['PEDIGREE']">Pedigree</option>
+        <option value="REQUESTOR_PROG" ng-disabled="tertiaryDisabled['REQUESTOR_PROG']">Requestor</option>
+        <option value="SRC_PLOT_NUM" ng-disabled="tertiaryDisabled['SRC_PLOT_NUM']">SRC Plot#</option>
+        <option value="SRC_SET" ng-disabled="tertiaryDisabled['SRC_SET']">SRC Set</option>
+        <option value=""></option>
+        <option value="ASORT1" ng-disabled="tertiaryDisabled['ASORT1']">ASRT1</option>
+        <option value="ASORT2" ng-disabled="tertiaryDisabled['ASORT2']">ASRT2</option>
+        <option value="ASORT3" ng-disabled="tertiaryDisabled['ASORT3']">ASRT3</option>
+        <option value="ASORT4" ng-disabled="tertiaryDisabled['ASORT4']">ASRT4</option>
+        <option value="ASORT5" ng-disabled="tertiaryDisabled['ASORT5']">ASRT5</option>
+        <option value="OWNER" ng-disabled="tertiaryDisabled['OWNER']">Owner</option>
+        <option value="METHODOLOGY" ng-disabled="tertiarydisabled['Material Type']">Material Type </option>
+        <option value="ORIGIN" ng-disabled="tertiaryDisabled['ORIGIN']">Origin</option>
+        <!--<option value="Product Name" ng-disabled="tertiaryDisabled['Product Name']"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD" ng-disabled="tertiaryDisabled['INBRED_LINE_RATING_CD']">Quality</option>
+        <option value="SRC_ORIG_COUNTRY" ng-disabled="tertiaryDisabled['SRC_ORIG_COUNTRY']">Region</option>
+        <option value="Request_ID" ng-disabled="tertiaryDisabled['Request_ID']">Request ID</option>
+        <option value="REQ_QTY" ng-disabled="tertiaryDisabled['REQ_QTY']">Seed Quantity</option>
+        <option value="SOURCE" ng-disabled="tertiaryDisabled['SOURCE']">Source</option>
+        <option value="SRC_Season" ng-disabled="tertiaryDisabled['SRC_Season']">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE" ng-disabled="tertiaryDisabled['STORAGE_UNIT_BARCODE']">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML" ng-disabled="tertiaryDisabled['STORAGE_UNIT_DISPLAY_DNML']">SU Location</option>
+        <option value="UOM" ng-disabled="tertiaryDisabled['UOM']">Seed Quantity_UOM</option>
+    </select>
+</div>
+<!--<div class="form-group">
+    <label>Fourth Sort</label>
+    <select class="form-control" ng-model="FourthSortOption">
+        <option value="0">Sort Choices</option>
+        <option value="Date_Needed">Date Due</option>
+        <option value="Pedigree">Pedigree</option>
+        <option value="Requestor">Requestor</option>
+        <option value="Src_Plot_Num">SRC Plot Number</option>
+        <option value="SRC_Set">SRC Set</option>
+        <option class="divider">--------------</option>
+        <option value="ASORT1">ASRT1</option>
+        <option value="ASORT2">ASRT2</option>
+        <option value="ASORT3">ASRT3</option>
+        <option value="ASORT4">ASRT4</option>
+        <option value="ASORT5">ASRT5</option>
+        <option value="Owner">Inv Owner</option>
+        <option value="Material Type ">Material Type </option>
+        <option value="Origin">Origin</option>
+        <option value=" Product Name"> Product Name</option>
+        <option value="QA/QC – Line Rating">QA/QC – Line Rating</option>
+        <option value="Region">Region</option>
+        <option value="Request ID<">Request ID</option>
+        <option value="REQ_QTY">Seed Quantity</option>
+        <option value="Source">Source</option>
+        <option value="SRC Season">SRC Season</option>
+        <option value="SU Bid">SU Bid</option>
+        <option value="SU Location">SU Location</option>
+        <option value="UOM">UOM</option> 
+    </select>
+</div>-->
+
+<!-- Heading -->
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-right"></span> Display</h2>
+</div>
+
+<div class="form-group">
+    <label>Default Display</label>
+    <input type="text" class="form-control" ng-model="FirstSortOption" disabled />
+</div>
+<div class="form-group">
+    <label>Display Optional 1</label>
+    <select class="form-control" ng-model="DisplayOptionalFirst" ng-change="displayOption2Disabled[DisplayOptionalSecond]=true;DefaultDisplay[FirstSortOption]=true;">
+        <option value="0" disabled>Display Choices</option>
+        <option value="DATE_NEEDED" ng-disabled="displayOption1Disabled['DATE_NEEDED']">Date Due</option>
+        <option value="PEDIGREE" ng-disabled="displayOption1Disabled['PEDIGREE']">Pedigree</option>
+        <option value="REQUESTOR_PROG" ng-disabled="displayOption1Disabled['REQUESTOR_PROG']">Requestor</option>
+        <option value="SRC_PLOT_NUM" ng-disabled="displayOption1Disabled['SRC_PLOT_NUM']">SRC Plot#</option>
+        <option value="SRC_SET" ng-disabled="displayOption1Disabled['SRC_SET']">SRC Set</option>
+        <option value=""></option>
+        <option value="ASORT1" ng-disabled="displayOption1Disabled['ASORT1']">ASRT1</option>
+        <option value="ASORT2" ng-disabled="displayOption1Disabled['ASORT2']">ASRT2</option>
+        <option value="ASORT3" ng-disabled="displayOption1Disabled['ASORT3']">ASRT3</option>
+        <option value="ASORT4" ng-disabled="displayOption1Disabled['ASORT4']">ASRT4</option>
+        <option value="ASORT5" ng-disabled="displayOption1Disabled['ASORT5']">ASRT5</option>
+        <option value="OWNER" ng-disabled="displayOption1Disabled['OWNER']">Owner</option>
+        <option value="METHODOLOGY" ng-disabled="displayoption1disabled['Material Type']">Material Type </option>
+        <option value="ORIGIN" ng-disabled="displayOption1Disabled['ORIGIN']">Origin</option>
+        <!--<option value="Product Name" ng-disabled="displayOption1Disabled['Product Name']"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD" ng-disabled="displayOption1Disabled['INBRED_LINE_RATING_CD']">Quality</option>
+        <option value="SRC_ORIG_COUNTRY" ng-disabled="displayOption1Disabled['SRC_ORIG_COUNTRY']">Region</option>
+        <option value="Request_ID" ng-disabled="displayOption1Disabled['Request_ID']">Request ID</option>
+        <option value="REQ_QTY" ng-disabled="displayOption1Disabled['REQ_QTY']">Seed Quantity</option>
+        <option value="SOURCE" ng-disabled="displayOption1Disabled['SOURCE']">Source</option>
+        <option value="SRC_Season" ng-disabled="displayOption1Disabled['SRC_Season']">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE" ng-disabled="displayOption1Disabled['STORAGE_UNIT_BARCODE']">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML" ng-disabled="displayOption1Disabled['STORAGE_UNIT_DISPLAY_DNML']">SU Location</option>
+        <option value="UOM" ng-disabled="displayOption1Disabled['UOM']">Seed Quantity_UOM</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Display Optional 2</label>
+    <select class="form-control" ng-model="DisplayOptionalSecond" ng-change="displayOption1Disabled[DisplayOptionalFirst]=true;DefaultDisplay[FirstSortOption]=true;">
+        <option value="0" disabled>Display Choices</option>
+        <option value="DATE_NEEDED" ng-disabled="displayOption2Disabled['DATE_NEEDED']">Date Due</option>
+        <option value="PEDIGREE" ng-disabled="displayOption2Disabled['PEDIGREE']">Pedigree</option>
+        <option value="REQUESTOR_PROG" ng-disabled="displayOption2Disabled['REQUESTOR_PROG']">Requestor</option>
+        <option value="SRC_PLOT_NUM" ng-disabled="displayOption2Disabled['SRC_PLOT_NUM']">SRC Plot#</option>
+        <option value="SRC_SET" ng-disabled="displayOption2Disabled['SRC_SET']">SRC Set</option>
+        <option value=""></option>
+        <option value="ASORT1" ng-disabled="displayOption2Disabled['ASORT1']">ASRT1</option>
+        <option value="ASORT2" ng-disabled="displayOption2Disabled['ASORT2']">ASRT2</option>
+        <option value="ASORT3" ng-disabled="displayOption2Disabled['ASORT3']">ASRT3</option>
+        <option value="ASORT4" ng-disabled="displayOption2Disabled['ASORT4']">ASRT4</option>
+        <option value="ASORT5" ng-disabled="displayOption2Disabled['ASORT5']">ASRT5</option>
+        <option value="OWNER" ng-disabled="displayOption2Disabled['OWNER']">Owner</option>
+        <option value="METHODOLOGY" ng-disabled="displayoption2disabled['Material Type']">Material Type </option>
+        <option value="ORIGIN" ng-disabled="displayOption2Disabled['ORIGIN']">Origin</option>
+        <!--<option value="Product Name" ng-disabled="displayOption2Disabled['Product Name']"> Prod</option>-->
+        <option value="INBRED_LINE_RATING_CD" ng-disabled="displayOption2Disabled['INBRED_LINE_RATING_CD']">Quality</option>
+        <option value="SRC_ORIG_COUNTRY" ng-disabled="displayOption2Disabled['SRC_ORIG_COUNTRY']">Region</option>
+        <option value="Request_ID" ng-disabled="displayOption2Disabled['Request_ID']">Request ID</option>
+        <option value="REQ_QTY" ng-disabled="displayOption2Disabled['REQ_QTY']">Seed Quantity</option>
+        <option value="SOURCE" ng-disabled="displayOption2Disabled['SOURCE']">Source</option>
+        <option value="SRC_Season" ng-disabled="displayOption2Disabled['SRC_Season']">SRC Season</option>
+        <option value="STORAGE_UNIT_BARCODE" ng-disabled="displayOption2Disabled['STORAGE_UNIT_BARCODE']">SU BID</option>
+        <option value="STORAGE_UNIT_DISPLAY_DNML" ng-disabled="displayOption2Disabled['STORAGE_UNIT_DISPLAY_DNML']">SU Location</option>
+        <option value="UOM" ng-disabled="displayOption2Disabled['UOM']">Seed Quantity_UOM</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <span style="color:red;">{{errorMessage}}</span>
+</div>
+<div class="form-group">
+    <button type="button" ng-click="saveFilter()" class="btn btn-primary form-control">Save</button>
+</div>
+
+<!--<select class="input-lg" >
+    <option>SRC Plot#</option>
+    <option>SRC Plot#</option>
+    <option>SRC Plot#</option>
+    <option>SRC Plot#</option>
+</select>-->
+<!--<div class="ui-submit ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false">
+    <span class="ui-btn-inner"><span class="ui-btn-text">Sort by Source Plot Number</span></span>
+    <input value="Submit" class="ui-btn-hidden" ng-click="searchSeed('Source_Plot_Number')">
+</div>
+<div class="ui-submit ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false">
+    <span class="ui-btn-inner"><span class="ui-btn-text">Sort by Pedigree</span></span>
+    <input value="Submit" class="ui-btn-hidden" ng-click="searchSeed('Pedigree')">
+</div>
+<div class="ui-submit ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false">
+    <span class="ui-btn-inner"><span class="ui-btn-text">Sort by Requestor</span></span>
+    <input value="Submit" class="ui-btn-hidden" ng-click="searchSeed('Requestor')">
+</div>
+<div class="ui-submit ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false">
+    <span class="ui-btn-inner"><span class="ui-btn-text">Sort by Material Type</span></span>
+    <input value="Submit" class="ui-btn-hidden" ng-click="searchSeed('MaterialType')">
+</div>
+<div class="ui-submit ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false">
+    <span class="ui-btn-inner"><span class="ui-btn-text">Sort by Due Date</span></span>
+    <input value="Submit" class="ui-btn-hidden" ng-click="searchSeed('DueDate')">
+</div>-->

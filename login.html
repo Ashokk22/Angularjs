@@ -1,0 +1,107 @@
+﻿<html lang="en" data-ng-app="seedApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
+    <title>Seed Request</title>
+
+</head>
+<body style="background-image: url('Content/Images/iPadLogin-min-1.png'); background-size: cover;">
+
+    <div ng-controller="loginController">
+        <div class="container" style="padding:15px">
+            <div class="col-lg-offset-3 col-lg-6 col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1 ">
+                <div class="panel" style="background-color:wheat;opacity:0.90;">
+
+
+                    <form name="form" style="padding:10%">
+                        <div class="panel-heading">
+                            <img src="Content/Images/loginlogohome.png" class="center-block img-responsive" />
+                        </div>
+
+                        <div class="form-group inner-addon left-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" name="userName" id="userName" placeholder="Username" required="" ng-model="userName" autofocus="" class="form-control">
+                        </div>
+                        <div class="form-group inner-addon left-addon" >
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input type="password" name="password" id="password" placeholder="Password" ng-model="password" autofocus="" class="form-control">
+                        </div>
+                      
+
+                        <div class="form-group">
+                            <input type="checkbox" class="col-xs-1" id="remember_me" ng-model="rememberMe" /> Remember me
+                        </div>
+                        <!--<div class="form-group">
+                            <span style="color:red;">{{loginErrorMsg}}</span>
+                        </div>-->
+                        <div class="form-group">
+                            <button type="submit"  class="btn btn-primary form-control" ng-click="Login()">Log in</button>
+                            <!--<input type="submit" value="Log In" class="btn btn-primary btn-lg" ng-click="Login()">-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-right'}"></toaster-container>
+    </div>
+    <style>
+        .inner-addon {
+            position: relative;
+        }
+
+            /* style icon */
+            .inner-addon .glyphicon {
+                position: absolute;
+                padding: 10px;
+                pointer-events: none;
+            }
+
+        /* align icon */
+        .left-addon .glyphicon {
+            left: 0px;
+        }
+
+        .right-addon .glyphicon {
+            right: 0px;
+        }
+
+        /* add padding  */
+        .left-addon input {
+            padding-left: 30px;
+        }
+
+        .right-addon input {
+            padding-right: 30px;
+        }
+    </style>
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="Scripts/toaster.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+    <script src="Scripts/angular-bootstrap-checkbox.js"></script>
+
+    <script src="Scripts/ng-cordova.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="Scripts/cordova.js"></script>
+    <script src="Scripts/angular-bootstrap-switch.js"></script>
+    <script src="angular/Directory/angular.treeview.js"></script>
+    <script src="Scripts/angular-filter.min.js"></script>
+    <script src="Scripts/ngStorage.min.js"></script>
+    <script src="Scripts/smart-table.min.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="angular/app.js"></script>
+    <script src="angular/config.js"></script>
+    <script src="angular/Service/authServiceProvider.js"></script>
+    
+    <script src="angular/Controllers/loginController.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!--<div>
+    <div>
+        <button id="Pedigree" ng-click="searchSeed('Pedigree')" class="btn btn-primary"> Sort by Pedigree</button>
+        <button id="SrcPlot#" ng-click="searchSeed('SRC_Plot_Number')" class="btn btn-primary"> Sort by SrcPlot#</button>
+        <button id="Date" ng-click="searchSeed('DateStamp')" class="btn btn-primary"> Sort by Date</button>
+        <button id="Source" ng-click="searchSeed('Source')" class="btn btn-primary"> Sort by Source</button>
+    </div>
+    <div>
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+    </div>
+</div>
+<style>
+    .gridStyle {
+        border: 1px solid rgb(212,212,212);
+        /*width: 100%;*/
+        max-width: 100%;
+        height: 800px;
+    }
+</style>-->
+<div>
+    <div style="min-height: 314px;">
+        <ul data-role="listview" class="ui-listview">
+            <li class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-count ui-first-child ui-btn-up-c" ng-repeat="result in pedigreeListData">
+                <div class="ui-btn-inner ui-li" ng-click="goToDetail(result)">
+                    <div class="ui-btn-text">
+                        <a class="ui-link-inherit">
+                            <h2 class="ui-li-heading">{{result.Pedigree}}</h2>
+                            <p class="ui-li-desc"><strong>Seed Amount :</strong>{{result.SeedAmount}} K</p>
+                            <!--<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">{{result.Total}}</span>-->
+                        </a>
+                    </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

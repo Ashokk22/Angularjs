@@ -1,0 +1,1 @@
+﻿var base_env_url = 'http://techit-tst.dummy.com/';

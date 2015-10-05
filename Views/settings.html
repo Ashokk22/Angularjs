@@ -1,0 +1,111 @@
+﻿<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong> Settings</strong>
+    </div>
+</div>
+<div>
+    <div>
+        <!--avoid duplicate value error use track by $index-->
+        <!--<ul ng-repeat="programcode in programCodes track by $index">
+            <li>{{programcode}}</li>
+        </ul>-->
+        <!--Program Codes : {{programCodes}}-->
+    </div>
+    <br />
+    <div class="form-group">
+        <style>
+            .btn.active {
+                display: none;
+            }
+
+
+            .btn span:last-child {
+                display: none;
+            }
+
+            .btn.active span:nth-of-type(1) {
+                display: block;
+            }
+
+            .btn.active span:last-child {
+                display: none;
+            }
+        </style>
+
+        <div class="col-xs-12 list-group">
+            <span class="list-group-item" style="color:red;" ng-show="isError"> You do not have access to any programs</span>
+        </div>
+
+
+
+        <ul class="col-xs-12 list-group" ng-show="!isError">
+            <li class="list-group-item">
+               
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                        Select All
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        Email Notification
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item" ng-repeat="prCode in programCodes">
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="checkbox" ng-model="prCode.ISSELECTED" />
+                        {{prCode.PROGRAMECODE}}
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <div>
+                            <button type="button" class="btn btn-default btn-success" ng-show="ShowNotifyButton(prCode.PROGRAMECODE, 'notify')" ng-click="AddProgramCode(prCode.PROGRAMECODE);">
+                                <i class="glyphicon glyphicon-ok"></i> Yes
+                            </button>
+                            <button type="button" class="btn btn-default btn-danger" ng-show="ShowNotifyButton(prCode.PROGRAMECODE, 'dontNotify')" ng-click="AddProgramCode(prCode.PROGRAMECODE);">
+                                <i class="glyphicon glyphicon-remove"></i> No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--<label for="{{prCode}}">{{prCode.programeCode}}</label>-->
+            </li>
+            <!--<li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <input id="ipAddress" type="text" name="ipAddress" placeholder="IP Address for Zebra Printer" ng-model="ipAddress" />
+                        {{ipAddress}}
+                        <input id="port" type="text" name="port" placeholder="port" ng-model="port" />
+                    </div>
+
+                </div>
+            </li>-->
+        </ul>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="IP Address for Zebra Printer" ng-model="ipAddress" />
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="port" ng-model="port" />
+    </div>
+    <!--<div class="form-group" ng-repeat="programCodes">
+        <input type="checkbox" class="form-control" id="searchSeedRequest" ng-model="BR_PROG_REF_ID" />
+        {{BR_PROG_REF_ID}}
+    </div>-->
+    <!--<div class="form-group">
+        <label>Primary Email Notification</label>
+        <input type="text" class="form-control" id="primaryEmailNotification" ng-model="primaryEmailNotification"/>
+    </div>-->
+    <div ng-show="!isError">
+        <!--<button class="btn btn-primary" ng-click="saveUserSetting()">OK</button>-->
+        <div class="form-group">
+            <span style="color:red;">{{errorMessage}}</span>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary form-control" ng-click="saveUserSettings()">OK</button>
+        </div>
+    </div>
+</div>

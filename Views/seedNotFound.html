@@ -1,0 +1,96 @@
+﻿<div class="panel panel-default">
+    <!-- Default panel contents -->
+
+    <div class="panel-heading text-center">
+        <a href="javascript:;" class="pull-left" ng-click="GoBackEvent()"><span aria-hidden="true">&larr;</span> Back</a>
+        <strong> Seed Not Found</strong>
+    </div>
+</div>
+
+<ul class="breadcrumb">
+    <li>GroupBy:{{GroupByOption}}</li>
+</ul>
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li>Sort Order:{{sort1}}</li>
+    <li>{{sort2}}</li>
+    <li>{{sort3}}</li>
+</ul>
+
+<style>
+    .warning {
+        color: red;
+        background-color: lightyellow;
+    }
+
+    /*.seedNotShelledStatus {
+        color: white;
+        background-color: lightgreen;
+    }*/
+</style>
+<div class="form-group">
+    
+    <ul class="col-xs-12 list-group">
+        <!--<li class="list-group-item" ng-repeat="seedData in searchInventoryData">
+            <input type="checkbox" ng-model="seedData.ISSELECTED">
+            <b>{{seedData.PRIMARYDISPLAY}}</b>
+            <p>{{seedData.DISPLAYOPTIONAL1}}</p><p>{{seedData.DISPLAYOPTIONAL2}}</p>
+        </li>-->
+        <li class="list-group-item" ng-repeat="seedData in searchSeedNotFoundData | groupBy:GroupByOption | toArray:true | orderBy:'$key'">
+            <div class="colored" style="color:red;background-color:Highlight">
+                {{ seedData.$key }}
+            </div>
+            <div>
+                
+                <div ng-repeat="sData in seedData | orderBy:GroupByOption" ng-class="{'warning':sData.ISSELECTED==true}" style="border:outset;">
+                   
+                    <checkbox id="checkbox0" ng-model="sData.ISSELECTED"></checkbox>
+                    <b>
+                        {{sort1}} : {{sData.PRIMARYDISPLAY}}
+                    </b>
+
+                    <p> {{Display1}} : {{sData.DISPLAYOPTIONAL1}}</p><p> {{Display2}} : {{sData.DISPLAYOPTIONAL2}}</p>
+                </div>
+            </div>
+            <!--<label for="{{prCode}}">{{prCode.programeCode}}</label>-->
+        </li>
+    </ul>
+</div>
+
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="showModalReason()">Move to Inactive and Find Alternate Source</button>
+
+    <!--data-toggle="modal" data-target="#reasonModal"-->
+</div>
+
+<div class="form-group">
+    <button class="btn btn-primary form-control" ng-click="seedNotShelled()">Seed Not Shelled</button>
+</div>
+
+ 
+<!-- Trigger the modal with a button -->
+<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reasonModal">Open Modal</button>-->
+    
+<!-- Modal -->
+<div class="modal fade" id="reasonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal Header</h4>-->
+                <div class="modal-title text-center" id="myModalLabel">
+                    <span><strong> Reasons</strong></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <a class="list-group-item" ng-click="moveToInActive('No More Seed')">No More Seed</a>
+                    <a class="list-group-item" ng-click="moveToInActive('Old Source')">Old Source</a>
+                    <a class="list-group-item" ng-click="moveToInActive('QA/QC')">QA/QC</a>
+                    <a class="list-group-item" ng-click="moveToInActive('Other')">Other</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
