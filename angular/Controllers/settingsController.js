@@ -1,0 +1,163 @@
+﻿(function () {
+
+    app.controller('settingsController', function ($scope, $http, $location, $window, seedRequestService, $rootScope, toaster) {
+
+        $scope.programCodes;
+        $scope.checkAll = false;
+        $scope.isError = false;
+        $scope.errorMessage;
+        $scope.GoBackEvent = goBack;
+        var userName = localStorage.userName;
+        $scope.ipAddress;
+        $scope.port;
+        function goBack() {
+            $window.history.back();
+        };
+
+
+        // block the scanner
+        $scope.$emit('block_scanner', true);
+
+        seedRequestService.getProgramCodes(userName).then(function (result) {
+            $scope.programCodes = result.data;
+
+            if (result.data.length > 0) {
+                $scope.isError = false;
+
+                // select existing programme code
+                seedRequestService.getUserSetting(userName).then(function (result) {
+                    if (result != undefined && result.data.length > 0) {
+                        angular.forEach(result.data[0].programCode.split(','), function (item) {
+
+                            angular.forEach($scope.programCodes, function (prCode) {
+                                //prCode.ISSELECTED = true;
+                                var strArr = item.split(':');
+                                if (prCode.PROGRAMECODE == strArr[0]) {
+                                    prCode.ISSELECTED = true;
+
+                                    prCode.NOTIFY = (strArr[1] == '1') ? true : false;
+
+                                    if (strArr[1] == '1') $scope.ProgramsToNotify.push(strArr[0]);
+                                }
+
+
+                            });
+                            console.log($scope.ProgramsToNotify);
+                        });
+
+                        $scope.ipAddress = result.data[0].ipAddress;
+                        $scope.port = result.data[0].port;
+                    }
+
+                });
+            }
+            else {
+                $scope.isError = true;
+            }
+        });
+
+        $scope.ShowNotifyButton = function (code, type) {
+
+            if (type == 'dontNotify' && $scope.ProgramsToNotify.indexOf(code) == -1) return true;
+
+
+            if (type == 'notify' && $scope.ProgramsToNotify.indexOf(code) > -1) return true;
+            // if (type == 'notify' && $scope.ProgramsToNotify.indexOf(code) == -1) return true;
+
+
+            return false;
+            //if (notify == true) return true;
+            //if ($scope.ProgramsToNotify.indexOf(code) > -1) return true;
+        };
+        $scope.ThisisIt = '';
+        $scope.checkAll = function () {
+            if ($scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+            angular.forEach($scope.programCodes, function (prCode) {
+                prCode.ISSELECTED = $scope.selectedAll;
+            });
+        };
+        $scope.parent = {};
+        $scope.parent
+        $scope.ProgramsToNotify = [];
+        $scope.state = {
+            adminMode: true
+        };
+        $scope.AddProgramCode = function (code) {
+
+
+            if ($scope.ProgramsToNotify.indexOf(code) > -1) {
+                $scope.ProgramsToNotify.splice($scope.ProgramsToNotify.indexOf(code), 1);
+            } else {
+                $scope.ProgramsToNotify.push(code);
+            }
+            console.log($scope.ProgramsToNotify);
+        };
+
+
+        $scope.saveUserSettings = function () {
+
+            var isProgrammeCodeSelected = false;
+            var strSelectedProgrammeCode = '';
+            var ipAddress = '';
+            var port = '';
+            angular.forEach($scope.programCodes, function (item) {
+                if (item.ISSELECTED == true) {
+                    isProgrammeCodeSelected = true;
+                    var notify = ':0';
+
+                    if ($scope.ProgramsToNotify.indexOf(item.PROGRAMECODE) > -1) {
+                        notify = ':1';
+                    }
+                    strSelectedProgrammeCode = strSelectedProgrammeCode + item.PROGRAMECODE + notify + ",";
+                }
+
+
+            });
+
+            if ($scope.ipAddress == null || $scope.ipAddress == undefined || $scope.ipAddress == "") {
+                toaster.warning('Please enter the ipAddress')
+            }
+            else if ($scope.port == null && $scope.port == undefined && $scope.port == "") {
+                toaster.warning('Please enter the port ')
+            }
+            else {
+                ipAddress = $scope.ipAddress;
+                port = $scope.port;
+            }
+
+            strSelectedProgrammeCode = strSelectedProgrammeCode.replace(/(^[,\s]+)|([,\s]+$)/g, '');
+            console.log(strSelectedProgrammeCode);
+
+            if (!isProgrammeCodeSelected) {
+                toaster.warning('Please select at least one program code above to continue');
+                return;
+            }
+
+            // program codes in local storage. If you want to store multiple programme codes then comma (,) separate
+            localStorage.selectedProgramCode = strSelectedProgrammeCode;
+            localStorage.ipAddress = ipAddress;
+            localStorage.port = port;
+
+            var groupByOption = localStorage.GroupByOption;
+            var firstSortOption = localStorage.FirstSortOption;
+            var secondSortOption = localStorage.SecondSortOption;
+            var thirdSortOption = localStorage.ThirdSortOption;
+
+
+            var displayOptionalFirst = localStorage.DisplayOptionalFirst;
+            var displayOptionalSecond = localStorage.DisplayOptionalSecond;
+
+
+
+            seedRequestService.saveUserSetting(userName, localStorage.selectedProgramCode, groupByOption, firstSortOption, secondSortOption, thirdSortOption, displayOptionalFirst, displayOptionalSecond, ipAddress, port).then(function (result) {
+                //once user setting saved then redirect to notification 
+                $location.path('/seedRequestFilter');
+            });
+        };
+    });
+
+})();

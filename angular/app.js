@@ -1,0 +1,1 @@
+﻿var app = angular.module('seedApp', ['ui.router', 'ngCordova', 'angularTreeview', 'angular.filter', 'ngStorage', 'ui.bootstrap', 'smart-table', 'ui.checkbox', 'toaster', 'ngAnimate']);

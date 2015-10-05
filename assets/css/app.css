@@ -1,0 +1,101 @@
+﻿@media only screen and (min-width:1219px) {
+    .hide-on-desktop, * [aria-labelledby='hide-on-desktop'] {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+
+.stick {
+    left: 3.5%;
+    position: fixed;
+    right: 0;
+    width: 90%;
+    z-index: 1104;
+}
+
+
+@media only screen and (min-width:1219px) {
+    .stick, * [aria-labelledby='hide-on-desktop'] {
+        left: 16.5%;
+        position: fixed;
+        right: 0;
+        width: 81%;
+        z-index: 1104;
+    }
+}
+
+.cameraMatch {
+    background-color: green !important;
+    color: white !important;
+}
+
+.cameraNotMatch {
+    background-color: red !important;
+}
+
+
+/*tree view styles*/
+
+
+div[data-angular-treeview] {
+  /* prevent user selection */
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* default */
+  font-family: Tahoma;
+  font-size:13px;
+  color: #555;
+  text-decoration: none;
+}
+
+div[data-tree-model] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; 
+  border: none;
+  overflow: hidden;
+}
+
+div[data-tree-model] li {
+  position: relative;
+  padding: 0 0 0 20px;
+  line-height: 20px;
+}
+
+.expanded {
+  padding: 1px 10px;
+  background-image: url("/Content/Images/arrow-down-b.svg");
+  background-repeat: no-repeat;
+}
+
+.collapsed {
+  padding: 1px 10px;
+
+  background-image: url("/Content/Images/arrow-right-b.svg");
+  background-repeat: no-repeat;
+}
+
+.normal {
+  padding: 1px 10px;
+  background-image: url("http://cfile23.uf.tistory.com/image/165B663A50C13F4B196CCA");
+  background-repeat: no-repeat;
+}
+
+div[data-tree-model] li i, div[data-tree-model] li span {
+  cursor: pointer;
+}
+
+div[data-tree-model] li .selected {
+  background-color: #aaddff;
+  font-weight: bold;
+  padding: 1px 5px;
+}
+
+.seedNotShelledStatus {
+    color:yellow;
+}
